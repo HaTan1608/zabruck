@@ -1,0 +1,103 @@
+@use "../abstracts" as *;
+.footer {
+  width: 100%;
+  &__logo {
+    a {
+      font-family: "Leckerli One";
+      text-decoration: none;
+      div {
+        font-size: 5rem;
+        color: $main2;
+        @include responsive(small) {
+          font-size: 4rem;
+        }
+        @include responsive(xsmall) {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+  &__container {
+    width: 100%;
+    &__block {
+      background: $white;
+      padding: 3rem;
+    }
+  }
+  &__intro {
+    &__img {
+      width: 15rem;
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+    &__msg {
+      margin-top: 3rem;
+      font-size: 1.6rem;
+      color: $silverlight;
+      width: 80%;
+      font-weight: 400;
+      line-height: 2.5rem;
+      @include responsive(small) {
+        font-size: 1.4rem;
+      }
+      @include responsive(xsmall) {
+        font-size: 1.3rem;
+        margin-top: 1rem;
+        width: 100%;
+      }
+    }
+  }
+  &__heading {
+    color: $black;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 2rem;
+    @include responsive(small) {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    @include responsive(xsmall) {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+  }
+  &__ul {
+    list-style: none;
+    &__li {
+      display: flex;
+      align-items: center;
+      color: $silverlight;
+      a {
+        text-decoration: none;
+        color: $silverlight;
+        display: block;
+        padding: 0.5rem 0;
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+        text-transform: capitalize;
+
+        @include responsive(small) {
+          font-size: 1.3rem;
+        }
+        @include responsive(xsmall) {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  &__bottom {
+    width: 100%;
+    background: linear-gradient(to right, $main1, $main2);
+    color: $white;
+    height: 5rem;
+    @include align(flex, center, center, null);
+    p {
+      font-size: 1.5rem;
+      text-transform: capitalize;
+    }
+  }
+}

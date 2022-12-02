@@ -1,23 +1,33 @@
+/* eslint-disable */
 import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
+import { BsSearch } from "react-icons/bs";
 import Link from "next/link";
 import Cookies from "js-cookie";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../utils/Store";
 import DropdownLink from "./DropdownLink";
-
+import Footer from "./Footer";
+import SearchBox from "./SearchBox";
+import Image from "next/image";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { MdShoppingCart } from "react-icons/md";
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
-
+  const [openSearch, setOpenSearch] = useState(false);
+  const [openToggle, setOpenToggle] = useState(false);
+  const getToggle = () => {
+    setOpenToggle(!openToggle);
+  };
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
+  // const [cartItemsCount, setCartItemsCount] = useState(0);
+  // useEffect(() => {
+  //   setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  // }, [cart.cartItems]);
 
   const logoutClickHandler = () => {
     Cookies.remove("cart");
@@ -34,19 +44,101 @@ export default function Layout({ title, children }) {
 
       <ToastContainer position="bottom-center" limit={1} />
 
-      <div className="flex min-h-screen flex-col justify-between ">
-        <header>
-          <nav className="flex h-12 items-center px-4 justify-between shadow-md">
-            <Link href="/">amazona</Link>
-            <div>
-              <Link href="/cart">
-                Cart
-                {cartItemsCount > 0 && (
-                  <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                    {cartItemsCount}
-                  </span>
-                )}
-              </Link>
+      <div className="header">
+        <header className="container">
+          <nav className="header__container">
+            <BsSearch
+              className="search"
+              onClick={() => setOpenSearch(!openSearch)}
+            />
+            {openSearch ? (
+              <div
+                className="navLayer zi-10"
+                onClick={() => setOpenSearch(!openSearch)}
+              ></div>
+            ) : (
+              ""
+            )}
+            <div
+              className={
+                openSearch
+                  ? "header__search__small header__search__small--open"
+                  : "header__search__small header__search__small--close"
+              }
+            >
+              <SearchBox />
+            </div>
+            <Link href="/">
+              <Image
+                width={80}
+                height={80}
+                alt="logo"
+                src="https://cdndev2.ntlogistics.vn/uploads/default/2022/12/01/e539c562d9d5490d88591ee406fe88ec/logozeb.jpeg"
+              />
+            </Link>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div className="header__right__cart__icon">
+                <div className="wrapper">
+                  <div className="icon">
+                    <div>
+                      {cart.cartItems &&
+                        (cart.cartItems.length > 0 ? (
+                          <>
+                            <div className="header__cart__heading">
+                              <div>Sản phẩm</div>
+                              <div>Số lượng</div>
+                            </div>
+                            {cart.cartItems.map((item, index) => (
+                              <div className="header__cart__items" key={index}>
+                                <div className="header__cart__items__name">
+                                  <LazyLoadImage
+                                    src={item.image}
+                                    alt={item.image}
+                                  />
+                                  <div className="header__cart__items__name--name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div>x{item.qty}</div>
+                              </div>
+                            ))}
+                            <div className="header__cart__total">
+                              <div className="header__cart__total__text">
+                                Tổng tiền:
+                              </div>
+                              <div className="header__cart__total__price">
+                                {cart.cartItems
+                                  .reduce((a, c) => a + c.price * c.qty, 0)
+                                  .toLocaleString("it-IT", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })}
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="header__cart__items__empty">
+                            <LazyLoadImage
+                              src={state.logoEmpty}
+                              alt={state.logoEmpty}
+                            />
+                          </div>
+                        ))}
+                    </div>
+                    {cart.cartItems &&
+                      (cart.cartItems.length > 0 ? (
+                        <div className="header__cart__count">
+                          {cart.cartItems.reduce((a, c) => a + c.qty, 0)}
+                        </div>
+                      ) : (
+                        ""
+                      ))}
+                    <Link href="/cart">
+                      <MdShoppingCart size={30} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
               {status === "loading" ? (
                 "Loading"
@@ -97,9 +189,7 @@ export default function Layout({ title, children }) {
           </nav>
         </header>
         <main className="container m-auto mt-4 px-4">{children}</main>
-        <footer className="flex h-10 justify-center items-center shadow-inner">
-          <p>Copyright © 2022 Amazona</p>
-        </footer>
+        <Footer />
       </div>
     </>
   );

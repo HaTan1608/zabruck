@@ -1,8 +1,10 @@
 import axios from "axios";
+import Link from "next/link";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import Layout from "../components/Layout";
-import ProductItem from "../components/ProductItem";
+import ProductImage from "../components/ProductImage";
+import ProductContents from "../components/ProductContents";
 import Product from "../models/Product";
 import db from "../utils/db";
 import { Store } from "../utils/Store";
@@ -23,17 +25,31 @@ export default function Home({ products }) {
 
     toast.success("Product added to the cart");
   };
-  console.log("product", products);
   return (
     <Layout title="Home Page">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product) => (
-          <ProductItem
-            product={product}
-            key={product.slug}
-            addToCartHandler={addToCartHandler}
-          ></ProductItem>
-        ))}
+      <div className="row">
+        {products
+          ? products.length > 0
+            ? products.map((product, index) => (
+                <div className="col-3 m-4 s-6 xs-6 p-15" key={product.slug}>
+                  <div className={`cities__body`}>
+                    <div className="cities__body__image1">
+                      <Link href={`/product/${product.slug}`}>
+                        <ProductImage img={product.image} />
+                      </Link>
+                    </div>
+
+                    <ProductContents
+                      ratingStar={product.rating}
+                      name={product.name}
+                      price={product.price}
+                      addCart={() => addToCartHandler(product._id, index)}
+                    />
+                  </div>
+                </div>
+              ))
+            : ""
+          : ""}
       </div>
     </Layout>
   );

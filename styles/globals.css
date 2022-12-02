@@ -15,12 +15,36 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.homepageProducts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.homepageProductContainer {
+  width: calc(50% - 4px);
+  padding: 8px;
+}
+
+.cardItem {
+  border-radius: 8px;
+  border: 1px solid rgb(122, 122, 122);
+  overflow: hidden;
+  padding: 4px;
+}
+
+.cardItemImage {
+  width: 100%;
+  height: auto;
+}
+.cardItemImage img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.cardItemImageInfoName {
+  font-size: 16px;
+  color: rgb(122, 122, 122);
 }
