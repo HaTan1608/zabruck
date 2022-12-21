@@ -423,6 +423,7 @@
       margin-bottom: 1rem;
       @include responsive(medium) {
         text-align: right;
+        transform: translateX(-50%);
       }
     }
     &__button {
@@ -445,24 +446,28 @@
       display: flex;
       justify-content: space-between;
 
-      :nth-child(1) {
-        margin-right: 1rem;
-      }
-      :nth-child(2) {
-        margin-right: -2rem;
-      }
-      :nth-child(3) {
-        margin-right: 8rem;
-      }
+      // :nth-child(1) {
+      //   margin-right: 1rem;
+      // }
+      // :nth-child(2) {
+      //   margin-right: -2rem;
+      // }
+      // :nth-child(3) {
+      //   margin-right: 8rem;
+      // }
     }
   }
   &__infomation {
     @include align(flex, center, center, null);
+    justify-content: space-between;
     background: $silverLight-40;
     margin-top: 1rem;
     position: relative;
+    flex-wrap: wrap;
     @include responsive(small) {
-      position: unset;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     &__name__size {
       position: relative;
@@ -498,15 +503,12 @@
       }
     }
     &__name {
-      position: absolute;
       font-size: 1.5rem;
       font-weight: 600;
-      top: 3.5rem;
-      left: 1rem;
+
       @include responsive(medium) {
       }
       @include responsive(small) {
-        top: 3rem;
       }
       @include responsive(xsmall) {
         position: unset;
@@ -531,11 +533,13 @@
     &__price {
       font-size: 1.5rem;
       font-weight: 500;
+      width: 30%;
+      text-align: left;
       @include responsive(medium) {
       }
       @include responsive(small) {
-        position: absolute;
-        bottom: 1.5rem;
+        width: 100%;
+        text-align: left;
       }
       @include responsive(xsmall) {
       }
@@ -558,6 +562,16 @@
     }
 
     &__qty {
+      width: 30%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      @include responsive(small) {
+        transform: translateX(calc(-50% - 30px));
+
+        margin-left: 60%;
+        width: 30%;
+      }
       @include responsive(xsmall) {
         margin-top: 0rem;
         width: 100%;
@@ -567,17 +581,16 @@
     &__total {
       font-size: 1.5rem;
       font-weight: 500;
-      margin-right: 2rem;
+      width: 30%;
+      text-align: right;
       @include responsive(medium) {
-        position: absolute;
-        right: 12rem;
-        top: 6rem;
       }
       @include responsive(small) {
-        display: none;
+        text-align: left;
+
+        width: 100%;
       }
       @include responsive(xsmall) {
-        display: none;
       }
     }
     &__stepper {
@@ -585,31 +598,57 @@
       @include responsive(medium) {
       }
       @include responsive(small) {
+        transform: translateX(50%);
+        width: 50%;
       }
       @include responsive(xsmall) {
         margin-left: 2rem;
       }
     }
-    &__delete {
-      bottom: 1rem;
+    &__delete__mobile {
       cursor: pointer;
-      position: absolute;
+      width: 10%;
+      display: none;
+
       @include responsive(medium) {
-        margin-left: 11rem;
-        display: block;
+        display: none;
       }
       @include responsive(small) {
-        position: absolute;
-        top: -6rem;
-        right: -0.3rem;
+        display: block;
+      }
+
+      &__b {
+        display: none;
+        @include responsive(medium) {
+          display: block;
+          text-align: right;
+        }
+        @include responsive(small) {
+          display: block;
+
+          text-align: right;
+        }
+        @include responsive(xsmall) {
+          display: block;
+
+          svg {
+            width: 10rem;
+          }
+        }
+      }
+    }
+    &__delete {
+      cursor: pointer;
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      @include responsive(medium) {
+      }
+      @include responsive(small) {
+        display: none;
       }
       @include responsive(xsmall) {
-        position: absolute;
-        right: -4rem;
-        top: 0.5rem;
-        svg {
-          width: 20rem;
-        }
+        display: none;
       }
       &__b {
         display: none;

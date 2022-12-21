@@ -197,9 +197,15 @@
     left: 2.2rem;
     bottom: 2.5rem;
     font-size: 1.7rem;
-    padding: 0.1rem 0.3rem;
-    border-radius: 1rem;
-    color: $main1;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    border: 1px solid #000;
     background: $white;
     @include responsive(medium) {
       font-size: 1.5rem;

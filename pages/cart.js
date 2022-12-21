@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { MdDeleteForever } from "react-icons/md";
 import Cookies from "js-cookie";
+import { convertNumberWithCommas } from "../utils/helper";
 
 function CartScreen() {
   const router = useRouter();
@@ -64,32 +65,37 @@ function CartScreen() {
                     <div className="col-6 cart__title__product m-0">
                       SẢN PHẨM
                     </div>
-                    <div className="col-6 cart__title__atc m-0 ">
-                      <span>GIÁ</span>
-                      <span>SỐ LƯỢNG</span>
-                      <span>THÀNH TIỀN</span>
+                    <div
+                      className="col-6 cart__title__atc m-0 "
+                      style={{ justifyContent: "space-between" }}
+                    >
+                      <span style={{ width: "30%" }}>GIÁ</span>
+                      <span style={{ width: "30%", textAlign: "center" }}>
+                        SỐ LƯỢNG
+                      </span>
+                      <span style={{ width: "30%", textAlign: "right" }}>
+                        THÀNH TIỀN
+                      </span>
+                      <span style={{ width: "10%" }}> </span>
                     </div>
                   </div>
                   {cartItems.map((item) => (
                     <div className="row" key={item.product}>
-                      <div className="col-6 cart__infomation">
+                      <div
+                        className="col-6 cart__infomation"
+                        style={{ justifyContent: "unset" }}
+                      >
                         <div className="cart__infomation__image">
                           <LazyLoadImage src={item.image} />
-                        </div>
+                        </div>{" "}
                         <div className="cart__infomation__name">
                           {item.name}
                         </div>
                       </div>
                       <div className="col-6 cart__infomation">
                         <div className="cart__infomation__price">
-                          {item.price.toLocaleString("it-IT", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                          <span className="cart__infomation__price__dollor">
-                            {" "}
-                            VNĐ
-                          </span>
+                          {convertNumberWithCommas(item.price * item.quantity)}
+                          &nbsp;VNĐ
                         </div>
                         <div className="cart__infomation__qty ">
                           <span className="ctrl cart__infomation__stepper">
@@ -104,7 +110,7 @@ function CartScreen() {
                                 className="ctrl__counter-input"
                                 type="text"
                                 id={`qty-input-${item.product}`}
-                                defaultValue={item.qty}
+                                defaultValue={item.quantity}
                                 onChange={(e) =>
                                   dispatch({
                                     type: "CART_ADD_ITEM",
@@ -123,12 +129,21 @@ function CartScreen() {
                               +
                             </div>
                           </span>
+
+                          <div
+                            className="cart__infomation__delete__mobile"
+                            style={{ marginBottom: "10px" }}
+                          >
+                            &nbsp;
+                            <MdDeleteForever
+                              size={30}
+                              onClick={() => removeFromCartHandler(item)}
+                            />
+                          </div>
                         </div>
                         <div className="cart__infomation__total">
-                          {(item.price * item.qty).toLocaleString("it-IT", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
+                          {convertNumberWithCommas(item.price * item.quantity)}
+                          &nbsp;VNĐ
                         </div>
                         <div className="cart__infomation__delete">
                           <MdDeleteForever
@@ -145,20 +160,16 @@ function CartScreen() {
                     <h2 className="cart__checkout__heading">TỔNG TIỀN </h2>
 
                     <div className="cart__checkout__total">
-                      {cartItems
-                        .reduce((a, c) => a + c.price * c.qty, 0)
-                        .toLocaleString("it-IT", {
-                          style: "currency",
-                          currency: "VND",
-                        })}
+                      {convertNumberWithCommas(
+                        cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+                      )}
                       <span className="cart__infomation__price__dollor">
-                        {" "}
                         VNĐ
                       </span>
                     </div>
                     <div className="cart__checkout__qty">
-                      {" "}
-                      ( {cartItems.reduce((a, c) => a + c.qty, 0)} sản phẩm ){" "}
+                      ( {cartItems.reduce((a, c) => a + c.quantity, 0)} sản phẩm
+                      )
                     </div>
                     <div className="cart__checkout__button">
                       <button

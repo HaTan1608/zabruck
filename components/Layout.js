@@ -34,6 +34,8 @@ export default function Layout({ title, children }) {
     dispatch({ type: "CART_RESET" });
     signOut({ callbackUrl: "/login" });
   };
+
+  console.log("cate", cart.cartItems);
   return (
     <>
       <Head>
@@ -76,11 +78,11 @@ export default function Layout({ title, children }) {
                 src="https://cdndev2.ntlogistics.vn/uploads/default/2022/12/01/e539c562d9d5490d88591ee406fe88ec/logozeb.jpeg"
               />
             </Link>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="header__right">
               <div className="header__right__cart__icon">
                 <div className="wrapper">
                   <div className="icon">
-                    <div>
+                    <div className="tooltip mt-1  w-30 r-3">
                       {cart.cartItems &&
                         (cart.cartItems.length > 0 ? (
                           <>
@@ -107,12 +109,10 @@ export default function Layout({ title, children }) {
                                 Tổng tiền:
                               </div>
                               <div className="header__cart__total__price">
-                                {cart.cartItems
-                                  .reduce((a, c) => a + c.price * c.qty, 0)
-                                  .toLocaleString("it-IT", {
-                                    style: "currency",
-                                    currency: "VND",
-                                  })}
+                                {cart.cartItems.reduce(
+                                  (a, c) => a + c.price * c.qty,
+                                  0
+                                )}
                               </div>
                             </div>
                           </>
@@ -128,13 +128,13 @@ export default function Layout({ title, children }) {
                     {cart.cartItems &&
                       (cart.cartItems.length > 0 ? (
                         <div className="header__cart__count">
-                          {cart.cartItems.reduce((a, c) => a + c.qty, 0)}
+                          {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                         </div>
                       ) : (
                         ""
                       ))}
                     <Link href="/cart">
-                      <MdShoppingCart size={30} />
+                      <MdShoppingCart size={30} color="#000" />
                     </Link>
                   </div>
                 </div>
