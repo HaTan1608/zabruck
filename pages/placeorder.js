@@ -18,7 +18,7 @@ export default function PlaceOrderScreen() {
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
   const itemsPrice = round2(
-    cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+    cartItems?.reduce((a, c) => a + c.quantity * c.price, 0)
   ); // 123.4567 => 123.46
 
   const shippingPrice = itemsPrice > 200 ? 0 : 15;
@@ -27,9 +27,9 @@ export default function PlaceOrderScreen() {
 
   const router = useRouter();
   useEffect(() => {
-    if (!paymentMethod) {
-      router.push("/payment");
-    }
+    // if (!paymentMethod) {
+    //   router.push("/payment");
+    // }
   }, [paymentMethod, router]);
 
   const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ export default function PlaceOrderScreen() {
     <Layout title="Place Order">
       <CheckoutWizard activeStep={3} />
       <h1 className="mb-4 text-xl">Place Order</h1>
-      {cartItems.length === 0 ? (
+      {cartItems?.length === 0 ? (
         <div>
           Cart is empty. <Link href="/">Go shopping</Link>
         </div>
@@ -76,9 +76,9 @@ export default function PlaceOrderScreen() {
             <div className="card  p-5">
               <h2 className="mb-2 text-lg">Shipping Address</h2>
               <div>
-                {shippingAddress.fullName}, {shippingAddress.address},{" "}
-                {shippingAddress.city}, {shippingAddress.postalCode},{" "}
-                {shippingAddress.country}
+                {shippingAddress?.fullName}, {shippingAddress?.address},{" "}
+                {shippingAddress?.city}, {shippingAddress?.postalCode},{" "}
+                {shippingAddress?.country}
               </div>
               <div>
                 <Link href="/shipping">Edit</Link>
@@ -103,26 +103,26 @@ export default function PlaceOrderScreen() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartItems.map((item) => (
-                    <tr key={item._id} className="border-b">
+                  {cartItems?.map((item) => (
+                    <tr key={item?._id} className="border-b">
                       <td>
-                        <Link href={`/product/${item.slug}`}>
-                          <a className="flex items-center">
+                        <Link href={`/product/${item?.slug}`}>
+                          <div className="flex items-center">
                             <Image
-                              src={item.image}
-                              alt={item.name}
+                              src={item?.image}
+                              alt={item?.name}
                               width={50}
                               height={50}
                             ></Image>
                             &nbsp;
-                            {item.name}
-                          </a>
+                            {item?.name}
+                          </div>
                         </Link>
                       </td>
-                      <td className=" p-5 text-right">{item.quantity}</td>
-                      <td className="p-5 text-right">${item.price}</td>
+                      <td className=" p-5 text-right">{item?.quantity}</td>
+                      <td className="p-5 text-right">${item?.price}</td>
                       <td className="p-5 text-right">
-                        ${item.quantity * item.price}
+                        ${item?.quantity * item?.price}
                       </td>
                     </tr>
                   ))}
@@ -178,5 +178,3 @@ export default function PlaceOrderScreen() {
     </Layout>
   );
 }
-
-PlaceOrderScreen.auth = true;

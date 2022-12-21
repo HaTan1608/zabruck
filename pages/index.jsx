@@ -20,7 +20,7 @@ export default function Home({ products }) {
       "https://image.enuchi.jp/upload/20201027/images/starbucks-limited-items-for-holiday-season1.jpg",
   });
   const addToCartHandler = async (product) => {
-    const existItem = cart.cartItems.find((x) => x.slug === product.slug);
+    const existItem = cart?.cartItems?.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
 
@@ -61,7 +61,7 @@ export default function Home({ products }) {
         <div className="row">
           {products
             ? products.length > 0
-              ? products.map((product, index) => (
+              ? products.map((product) => (
                   <div className="col-3 m-4 s-6 xs-6 p-15" key={product.slug}>
                     <div className={`cities__body`}>
                       <div className="cities__body__image1">
@@ -74,7 +74,7 @@ export default function Home({ products }) {
                         ratingStar={product.rating}
                         name={product.name}
                         price={product.price}
-                        addCart={() => addToCartHandler(product._id, index)}
+                        addCart={() => addToCartHandler(product)}
                       />
                     </div>
                   </div>
