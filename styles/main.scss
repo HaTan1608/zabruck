@@ -1,10 +1,19 @@
 @use "./scss/base/base";
 @use "./scss/components/header";
+@use "./scss/components/product";
+@use "./scss/components/destinationInfo";
+@use "./scss/components/cities";
+@use "./scss/components/footer";
+@use "./scss/components/homepage";
+
+@use "./scss/components/reviews";
+@use "./scss/layout/layout";
+@use "./scss/utils/utils";
+@use "./scss/abstracts/buttons";
 // @use "./scss/components/model";
 // @use "./scss/components/nav";
 // @use "./scss/components/toggle";
 // @use "./scss/components/destinations";
-// @use "./scss/components/destinationInfo";
 // @use "./scss/components/services";
 // @use "./scss/components/cities";
 // @use "./scss/components/gallery";
@@ -18,6 +27,6 @@
 // @use "./scss/components/homepage";
 
 // @use "./scss/components/profile";
-@use "./scss/utils/utils";
-@use "./scss/layout/layout";
-@use "./scss/abstracts/buttons";
+// @use "./scss/utils/utils";
+// @use "./scss/layout/layout";
+// @use "./scss/abstracts/buttons";

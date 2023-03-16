@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer__container">
+      {/* <div className="footer__container">
         <div className="container">
           <div className="footer__container__block">
             <div className="row ml-minus-15 mr-minus-15">
@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="footer__bottom">
           <p>&copy; Copy right Fshop {new Date().getFullYear()}</p>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 };

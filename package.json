@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \" next dev \" \"npm run scss \"",
+    "scss": "sass styles/main.scss styles/main.css --watch --no-source-map --style compressed",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

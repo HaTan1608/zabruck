@@ -1,16 +1,6 @@
 import "../styles/globals.css";
-import "../styles/scss/components/_header.scss";
-import "../styles/scss/components/_destinationInfo.scss";
-import "../styles/scss/components/_cities.scss";
-import "../styles/scss/components/_footer.scss";
-import "../styles/scss/components/_homepage.scss";
 
-import "../styles/scss/components/_reviews.scss";
-import "../styles/scss/layout/_layout.scss";
-import "../styles/scss/utils/_utils.scss";
-import "../styles/scss/base/_base.scss";
-import "../styles/scss/abstracts/_buttons.scss";
-
+import "../styles/main.css";
 import { SessionProvider, useSession } from "next-auth/react";
 import { StoreProvider } from "../utils/Store";
 import { useRouter } from "next/router";

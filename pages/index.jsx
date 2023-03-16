@@ -1,7 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { toast } from "react-toastify";
 import Layout from "../components/Layout";
 import ProductImage from "../components/ProductImage";
 import ProductContents from "../components/ProductContents";
@@ -25,11 +24,9 @@ export default function Home({ products }) {
     const { data } = await axios.get(`/api/products/${product._id}`);
 
     if (data.countInStock < quantity) {
-      return toast.error("Sorry. Product is out of stock");
+      return;
     }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
-
-    toast.success("Product added to the cart");
   };
   return (
     <Layout title="Home Page">

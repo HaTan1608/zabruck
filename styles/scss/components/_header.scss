@@ -8,6 +8,10 @@
     padding-top: 1.5rem;
   }
   @include responsive(small) {
+    .container:has(.header__container) {
+      padding: 0;
+    }
+    width: 100%;
     padding-top: 0rem;
     min-height: 6rem;
   }
@@ -145,6 +149,11 @@
   }
   &__container {
     @include align(flex, space-between, center, null);
+    @include responsive(small) {
+      height: 60px;
+      background: red;
+      width: 100%;
+    }
   }
   &__logo {
     @include responsive(medium) {
@@ -228,23 +237,16 @@
     font-weight: 900;
     font-size: 2.2rem;
     color: $white;
-    position: relative;
     @include responsive(medium) {
       font-size: 1.8rem;
     }
     @include responsive(small) {
       font-size: 1.6rem;
       min-height: 6rem;
-      position: absolute;
-      right: 1rem;
-      margin-top: 4rem;
     }
     @include responsive(xsmall) {
       font-size: 1.3rem;
       min-height: 4rem;
-      position: absolute;
-      right: 1rem;
-      margin-bottom: 2rem;
     }
     a {
       color: inherit;
