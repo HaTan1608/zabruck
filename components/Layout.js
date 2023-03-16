@@ -70,14 +70,14 @@ export default function Layout({ title, children }) {
             >
               <SearchBox />
             </div>
-            <Link href="/">
+            {/* <Link href="/">
               <Image
                 width={80}
                 height={80}
                 alt="logo"
-                src="https://cdndev2.ntlogistics.vn/uploads/default/2022/12/01/e539c562d9d5490d88591ee406fe88ec/logozeb.jpeg"
+                // src="https://cdndev2.ntlogistics.vn/uploads/default/2022/12/01/e539c562d9d5490d88591ee406fe88ec/logozeb.jpeg"
               />
-            </Link>
+            </Link> */}
             <div className="header__right">
               <div className="header__right__cart__icon">
                 <div className="wrapper">

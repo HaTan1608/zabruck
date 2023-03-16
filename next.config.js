@@ -3,11 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   distDir: "build",
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "cdndev2.ntlogistics.vn",
-      "kddi-h.assetsadobe3.com",
-    ],
+    domains: ["res.cloudinary.com", "kddi-h.assetsadobe3.com"],
   },
 };
 
