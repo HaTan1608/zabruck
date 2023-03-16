@@ -1,4 +1,7 @@
+/* eslint-disable */
+
 import FooterIntro from "./FooterIntro";
+
 import FooterLinks from "./FooterLinks";
 import React from "react";
 const Footer = () => {
