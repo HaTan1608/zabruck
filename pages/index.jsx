@@ -32,13 +32,7 @@ export default function Home({ products }) {
     <Layout title="Home Page">
       <div className="homepage">
         <div className="homepage__banner">
-          <Carousel
-            showThumbs={false}
-            autoPlay={true}
-            interval={2000}
-            infiniteLoop={true}
-            emulateTouch={true}
-          >
+          <Carousel>
             <div style={{ maxHeight: "400px" }}>
               <LazyLoadImage src={imageBitis.image1} alt={imageBitis.image1} />
             </div>
@@ -63,7 +57,7 @@ export default function Home({ products }) {
                     <div className={`cities__body`}>
                       <div className="cities__body__image1">
                         <Link href={`/product/${product.slug}`}>
-                          <ProductImage img={product.image} />
+                          <ProductImage img={product.images[0].image} />
                         </Link>
                       </div>
 

@@ -11,6 +11,7 @@
     .container:has(.header__container) {
       padding: 0;
     }
+
     width: 100%;
     padding-top: 0rem;
     min-height: 6rem;
@@ -151,7 +152,7 @@
     @include align(flex, space-between, center, null);
     @include responsive(small) {
       height: 60px;
-      background: red;
+      background: #ef7575;
       width: 100%;
     }
   }

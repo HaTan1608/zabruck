@@ -35,13 +35,53 @@ export default function ProductScreen(props) {
     <Layout title={product.name}>
       <div className="product">
         <div className="product__imageInfo">
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={200}
-            height={200}
-            className="product__imageInfo__image"
-          />
+          <div className="product__imageInfo__image">
+            <Image
+              src={product.images[0].image}
+              alt={product.name}
+              width={200}
+              height={200}
+              className="product__imageInfo__image__main"
+            />
+            <div className="product__imageInfo__image__list">
+              <div className="col-3">
+                <Image
+                  src={product.images[0].image}
+                  alt={product.name}
+                  width={200}
+                  height={200}
+                  className="product__imageInfo__image__list__image"
+                />
+              </div>
+              <div className="col-3">
+                <Image
+                  src={product.images[1].image}
+                  alt={product.name}
+                  width={200}
+                  height={200}
+                  className="product__imageInfo__image__list__image"
+                />
+              </div>
+              <div className="col-3">
+                <Image
+                  src={product.images[2].image}
+                  alt={product.name}
+                  width={200}
+                  height={200}
+                  className="product__imageInfo__image__list__image"
+                />
+              </div>
+              <div className="col-3">
+                <Image
+                  src={product.images[3].image}
+                  alt={product.name}
+                  width={200}
+                  height={200}
+                  className="product__imageInfo__image__list__image"
+                />
+              </div>
+            </div>
+          </div>
           <div className="product__imageInfo__info">
             <h1 className="product__imageInfo__info__name">{product.name}</h1>
             {/* <div>
@@ -58,7 +98,7 @@ export default function ProductScreen(props) {
               Add to cart
             </button>
             <div className="product__imageInfo__info__description">
-              Description: {product.description}
+              {product.description}
             </div>
           </div>
         </div>

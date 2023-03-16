@@ -13,21 +13,14 @@ const FooterIntro = () => {
     <div className="footer__intro">
       <div className="footer__logo">
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-          {/* <Image
-            width={100}
-            height={100}
-            alt="logo"
-            // src="https://cdndev2.ntlogistics.vn/uploads/default/2022/12/01/e539c562d9d5490d88591ee406fe88ec/logozeb.jpeg"
-          /> */}
           <h4
             style={{
               fontSize: "36px",
-              marginTop: "36px",
-              marginLeft: "-6px",
+              marginTop: "18px",
               color: "rgb(121,121,121)",
             }}
           >
-            ebruck
+            Zebruck
           </h4>
         </Link>
       </div>

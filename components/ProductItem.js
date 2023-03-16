@@ -5,7 +5,7 @@ export default function ProductItem({ product, addToCartHandler }) {
   return (
     <div className="cardItem">
       <Link href={`/product/${product.slug}`} className="cardItemImage">
-        <img src={product.image} alt={product.name} />
+        <img src={product.images[0].image} alt={product.name} />
       </Link>
       <div className="cardItemImageInfo">
         <Link href={`/product/${product.slug}`}>

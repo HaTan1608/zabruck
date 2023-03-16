@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
+const imageSchema = new mongoose.Schema({
+  image: { type: String },
+});
 
 const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     category: { type: String, required: true },
-    image: { type: String, required: true },
+    images: [imageSchema],
     price: { type: Number, required: true },
     brand: { type: String, required: true },
     rating: { type: Number, required: true, default: 0 },
